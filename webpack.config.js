@@ -14,7 +14,10 @@ module.exports = {
     module: {
         loaders: [
             {test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/},
-            {test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/}
+            {test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/},
+            {test: /\.less$/, loader: 'style-loader!css-loader!less-loader'},
+            {test: /\.css$/, loader: "style-loader!css-loader?importLoaders=1"},
+            {test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/, loader: 'url-loader', options: {limit: 10000}}
         ]
     },
     plugins: [HtmlWebpackPluginConfig]
