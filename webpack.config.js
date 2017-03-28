@@ -1,24 +1,55 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-    template: './dist/index.html',
-    filename: 'index.html',
-    inject: 'body'
-})
+var path = require('path');
+var webpack = require('webpack');
+
 module.exports = {
-    entry: './index.js',
+    devtool: 'cheap-module-eval-source-map',
+    entry: [
+        'webpack-hot-middleware/client',
+        './index.js'
+    ],
     output: {
-        path: path.resolve('dist'),
-        filename: 'bundle.js'
+        path: path.join(__dirname, 'dist'),
+        filename: 'bundle.js',
+        publicPath: '/dist'
     },
+
     module: {
-        loaders: [
-            {test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/},
-            {test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/},
-            {test: /\.less$/, loader: 'style-loader!css-loader!less-loader'},
-            {test: /\.css$/, loader: "style-loader!css-loader?importLoaders=1"},
-            {test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/, loader: 'url-loader', options: {limit: 10000}}
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /(node_modules|bower_components)/,
+                loader: 'babel-loader',
+                query: {
+                    presets: ['es2015', 'stage-0', 'stage-1', 'stage-2', 'stage-3', 'react'],
+                    plugins: ["transform-decorators-legacy"]
+                }
+            },
+            {test: /\.css$/, use: 'css-loader'},
+            {
+                test: /\.less$/,
+                use: [
+                    'style-loader',
+                    {loader: 'css-loader', options: {importLoaders: 1}},
+                    'less-loader'
+                ]
+            },
+            {test: /\.(png|jpg)$/, loader: 'url-loader?limit=100000'}
         ]
     },
-    plugins: [HtmlWebpackPluginConfig]
-}
+    plugins: [
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoEmitOnErrorsPlugin(),
+        // new webpack.ProvidePlugin({
+        //     Promise: 'exports?global.Promise!es6-promise',
+        //     fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch'
+        // }),
+        // new webpack.DefinePlugin({
+        //     'process.env.NODE_ENV': '"DEV"'
+        // }),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            }
+        })
+    ]
+};

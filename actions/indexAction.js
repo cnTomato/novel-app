@@ -24,16 +24,17 @@ const getDataFail = (err) => {
     }
 };
 
-export const initPage = (params, url="http://api.zhuishushenqi.com/cats/lv2/statistics") => {
+export const initPage = (params, url = "http://api.zhuishushenqi.com/cats/lv2/statistics") => {
+    console.log(params, url)
     return (dispatch, getState) => {
         axios.get(url, {
             params: params
         })
             .then(function (res) {
                 console.log(res);
-                if (res.ok=="true"){
+                if (res.ok == "true") {
                     dispatch(getDataSuccess(res))
-                }else{
+                } else {
                     dispatch(getDataFail(res))
                 }
             })
