@@ -9,7 +9,7 @@ const Init={
     '_data':[]
 };
 
-export default function indexReducer(state = Init, action="GET_DATA_POST_SUCCESS") {
+export default function indexReducer(state = Init, action) {
     console.log(Init,'_____')
     console.log(action,'_____')
     switch (action.type){

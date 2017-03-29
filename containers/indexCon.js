@@ -23,7 +23,6 @@ export default class App extends Component {
     }
 
     componentWillMount() {
-        console.log(this)
         console.log(this.props)
         let {actions} = this.props;
         actions.initPage()

@@ -4,28 +4,22 @@ import {createStore, combineReducers} from "redux";
 import {Provider} from "react-redux";
 import {Router, Route, browserHistory} from "react-router";
 import {syncHistoryWithStore, routerReducer} from "react-router-redux";
-import reducer from "./reducers/indexReducer";
-import Index from "./components/indexCom"
-// import routes from "./routes"
-// import {DatePicker, message} from "antd";
-// import "antd/dist/antd.css"
-// import "./index.less"
+import reducers from "./reducers/indexReducer";
+import routes from "./routes"
 
 const store = createStore(
     combineReducers({
-        ...reducer,
+        reducers,
         routing: routerReducer
     })
 );
-const history = syncHistoryWithStore(browserHistory, store);
+
+const history = syncHistoryWithStore(browserHistory, store)
+
 
 ReactDOM.render(
     <Provider store={store}>
-        <Router history={history}>
-            <Route path="/" component={Index}>
-
-            </Route>
-        </Router>
+        <Router history={history} routes={routes}></Router>
     </Provider>,
-    document.getElementById("app")
-);
+    document.getElementById('app')
+)

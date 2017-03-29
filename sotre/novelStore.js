@@ -1,15 +1,10 @@
-import {
-    createStore,
-    applyMiddleware,
-    compose
-} from 'redux';
-import rootReducer from '../reducers/indexReducer';
-import thunk from 'redux-thunk';
+import thunk from 'redux-thunk'
+import {createStore, applyMiddleware, compose} from 'redux'
+import {requestHandler} from '../requestHandler'
 
-const middleware = applyMiddleware(
-    thunk
+const middleware = [requestHandler, thunk];
+
+const configureStore = compose(
+    applyMiddleware(...middleware)
 )(createStore);
-
-export default function configureStore(initialState) {
-    return middleware(rootReducer, initialState)
-}
+export default configureStore
