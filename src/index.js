@@ -1,9 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Routes from "./router/routes"
-import './index.css';
+import React, {Component} from "react";
+import ReactDOM from "react-dom";
+import "../less/common.less"
 
-ReactDOM.render(
-    <Routes />,
-    document.getElementById('root')
-);
+class Index extends Component {
+    render() {
+        return <h1>123</h1>
+    }
+}
+
+ReactDOM.render(<Index/>, document.querySelector("#app"))
