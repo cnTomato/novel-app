@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const config = require('./webpack.config.dev')
-
 const app = new (require('express'))();
 const port = 3001;
 const express = require('express');

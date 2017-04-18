@@ -5,16 +5,16 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     entry: [
         './pages/index.js',
-        // './pages/searchResult.js',
-        // './pages/source.js',
-        // './pages/category.js',
-        // './pages/chapter.js',
-        // './pages/cat.js',
+        './pages/searchResult.js',
+        './pages/source.js',
+        './pages/category.js',
+        './pages/chapter.js',
+        './pages/cat.js',
     ],
     output: {
         path: resolve(__dirname, 'dist'),
         filename: '[name].js',
-        publicPath: '/dist/',
+        publicPath: '/',
         chunkFilename: "[id].chunk.js"
     },
     devtool: 'inline-source-map',

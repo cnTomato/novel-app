@@ -29,15 +29,11 @@ module.exports = {
                 }
             },
             {
-                test: /\.css$/,
-                loader: "style-loader!css-loader"
-            },
-            {
                 test: /\.less$/,
                 use: [
                     'style-loader',
                     {loader: 'css-loader', options: {importLoaders: 1}},
-                    'less-loader'
+                    {loader: 'less-loader', options: {strictMath: true, noIeCompat: true}}
                 ]
             },
             {
@@ -49,8 +45,8 @@ module.exports = {
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         // 开启全局的模块热替换（HMR）
-        new webpack.NamedModulesPlugin(),
+        new webpack.NamedModulesPlugin()
         // 当模块热替换（HMR）时在浏览器控制台输出对用户更友好的模块名字信息
-        new UglifyJSPlugin()
+        // new UglifyJSPlugin()
     ]
 };

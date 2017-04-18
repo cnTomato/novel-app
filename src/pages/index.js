@@ -1,22 +1,15 @@
-import React from 'react'
+import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
-import {AppContainer} from 'react-hot-loader'
-
 import Index from '../components/index'
 
-const render = Component => {
-    ReactDOM.render(
-        <AppContainer>
-            <Component />
-        </AppContainer>,
-        document.getElementById('app')
-    )
+class App extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return <Index/>
+    }
 }
 
-render(Index)
-
-if (module.hot) {
-    module.hot.accept('../components/index', () => {
-        render(Index)
-    })
-}
+ReactDOM.render(<App/>, document.getElementById("app"));
