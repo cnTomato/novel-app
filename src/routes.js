@@ -1,21 +1,25 @@
+import React from "react";
 import {
     BrowserRouter as Router,
     Route,
     Link
 } from 'react-router-dom';
+import Index from "./components/index"
+import SearchResult from "./components/searchResult"
+import Sources from "./components/sources"
+import Category from "./components/category"
+import Chapter from "./components/chapter"
+import Cat from "./components/cat"
 
 const Routes = () => (
     <Router>
         <div>
-            <ul>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/about">About</Link></li>
-                <li><Link to="/topics">Topics</Link></li>
-            </ul>
-
-            <Route exact path="/" component={Home}/>
-            <Route path="/about" component={About}/>
-            <Route path="/topics" component={Topics}/>
+            <Route exact path="/" component={Index}/>
+            <Route path="/searchResult" component={SearchResult}/>
+            <Route path="/sources" component={Sources}/>
+            <Route path="/category" component={Category}/>
+            <Route path="/chapter" component={Chapter}/>
+            <Route path="/cat" component={Cat}/>
         </div>
     </Router>
 );

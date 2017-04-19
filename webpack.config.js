@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: [
-        './pages/index.js',
+        './pages/novel.js',
         './pages/searchResult.js',
         './pages/source.js',
         './pages/category.js',
@@ -83,8 +83,8 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             title: 'template',
-            template: './template/source.html',
-            filename: './dist/source.html',
+            template: './template/novel.html',
+            filename: './dist/novel.html',
             inject: 'body',
             hash: true,
             chunks: ['vendors', 'source'],

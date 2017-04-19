@@ -5,12 +5,8 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
     entry: [
-        './src/pages/index.js',
-        // './pages/searchResult.js',
-        // './pages/source.js',
-        // './pages/category.js',
-        // './pages/chapter.js',
-        // './pages/cat.js',
+        'webpack-hot-middleware/client',
+        './src/pages/novel.js'
     ],
     output: {
         path: resolve(__dirname, 'dist'),
