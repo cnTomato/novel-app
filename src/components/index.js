@@ -1,12 +1,15 @@
 import React, {Component} from 'react';
-import { Route, Redirect } from 'react-router'
 import PropTypes from 'prop-types';
+import {Redirect} from "react-router-dom";
 import "../../less/index.less"
 
+
 class Index extends Component {
-    constructor(props) {
-        super(props);
+
+    constructor(props, context) {
+        super(props, context);
         this.state = {
+            redirectTo: false,
             text: ''
         };
         this.inputSearch = this.inputSearch.bind(this);
@@ -14,22 +17,26 @@ class Index extends Component {
     }
 
     inputSearch(e) {
-        console.log(e.target.value)
         this.setState({
             text: e.target.value
         })
     }
 
-    handleSearch(){
-
-        <Redirect to={{
-            pathname: '/login',
-                search: '?utm=your+face',
-                state: { referrer: this.state.text }
-        }}/>
+    handleSearch() {
+        this.setState({
+            redirectTo: true
+        })
     }
 
     render() {
+        const {redirectTo} = this.state;
+        if (redirectTo) {
+            return <Redirect to={{
+                pathname: "/searchResult",
+                state: {referrer: this.state.text}
+            }}/>
+        }
+
         return (
             <div className="index">
                 <h1>搜小说-拒绝广告</h1>
@@ -50,8 +57,5 @@ class Index extends Component {
     }
 }
 
-Index.propTypes = {
-    text: PropTypes.string
-};
 
 export default Index;

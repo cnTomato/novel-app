@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Route, Redirect } from 'react-router'
+import {Route, Redirect} from 'react-router'
 import PropTypes from 'prop-types';
 import "../../less/index.less"
 
@@ -9,9 +9,14 @@ class SearchResult extends Component {
     }
 
     render() {
+        console.log(this.state)
+        // const {referrer} = this.state;
         return (
             <div className="index">
                 searchresult
+                {/*{*/}
+                    {/*referrer*/}
+                {/*}*/}
             </div>
         )
     }
