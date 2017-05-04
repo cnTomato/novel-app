@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Redirect} from "react-router-dom";
-import "../../less/index.less"
-
+import "../../less/index.scss"
+import conf from "../config";
 
 class Index extends Component {
 
@@ -30,6 +30,7 @@ class Index extends Component {
 
     render() {
         const {redirectTo} = this.state;
+        const color=conf.getRandomColor();
         if (redirectTo) {
             return <Redirect to={{
                 pathname: "/searchResult",
@@ -46,11 +47,7 @@ class Index extends Component {
                 </div>
                 <div className="history">
                     <h2><em>搜索历史</em></h2>
-                    <a href="">搜索</a>
-                    <a href="">搜索</a>
-                    <a href="">搜索</a>
-                    <a href="">搜索</a>
-                    <a href="">搜索</a>
+                    <a href="" style={{color}}>搜索</a>
                 </div>
             </div>
         )

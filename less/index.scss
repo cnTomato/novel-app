@@ -1,4 +1,4 @@
-@import "common";
+@import "common.scss";
 
 ::-webkit-input-placeholder {
     text-align: center;
@@ -8,41 +8,40 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    .rem(padding, 200 60 0 60)
+    padding: px2rem(200) px2rem(60) 0 px2rem(60);
 }
 
 h1 {
-    .rem(font-size, 72);
-    .rem(margin-bottom, 100);
+    font-size:px2rem(72);
+    margin-bottom:px2rem(100);
 }
 
 .input-group {
     position: relative;
-    .rem(margin-bottom, 100);
-    .rem(padding, 60);
+    padding: px2rem(60) 0;
     width: 100%;
     input {
         display: block;
         width: 100%;
         text-align: center;
-        .rem(height, 78);
-        .rem(padding, 15);
-        .rem(font-size, 30);
+        height:px2rem(78);
+        padding:px2rem(15);
+        font-size:px2rem(30);
         border: none;
-        .rem(border-radius, 10);
+        border-radius: px2rem(10);
     }
     button {
         display: block;
         position: absolute;
-        .rem(width, 120);
-        .rem(height, 78);
-        .rem(font-size, 32);
-        .rem(top, 60);
-        .rem(right, 60);
+        width:px2rem(120);
+        height:px2rem(78);
+        font-size:px2rem(32);
+        top:px2rem(60);
+        right:0;
         z-index: 99;
         border: none;
         background-color: #1bba9a;
-        .rem(border-radius, 0 10 10 0);
+        border-radius: 0 px2rem(10) px2rem(10) 0;
         color: #fff;
     }
 }
@@ -67,7 +66,7 @@ h1 {
         em{
             position: relative;
             font-style: normal;
-            .rem(padding,0 30);
+            padding:px2rem(0) px2rem(30);
             background-color: #42454e;
             z-index:2;
         }

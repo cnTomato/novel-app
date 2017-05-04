@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Route, Redirect } from 'react-router'
 import PropTypes from 'prop-types';
-import "../../less/index.less"
+import "../../less/index.scss"
 
 class Chapter extends Component {
     constructor(props) {

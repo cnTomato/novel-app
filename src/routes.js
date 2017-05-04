@@ -1,26 +1,30 @@
-import React from "react";
-import {
-    BrowserRouter as Router,
-    Route,
-    Link
-} from 'react-router-dom';
-import Index from "./components/index"
-import SearchResult from "./components/searchResult"
-import Sources from "./components/sources"
-import Category from "./components/category"
-import Chapter from "./components/chapter"
-import Cat from "./components/cat"
+import React, {Component} from 'react'
+import {Route} from 'react-router'
+import CatCon from 'bundle-loader?lazy!./containers/catCon'
 
-const Routes = () => (
-    <Router>
-        <div>
-            <Route exact path="/" component={Index}/>
-            <Route path="/searchResult" component={SearchResult}/>
-            <Route path="/sources" component={Sources}/>
-            <Route path="/category" component={Category}/>
-            <Route path="/chapter" component={Chapter}/>
-            <Route path="/cat" component={Cat}/>
-        </div>
-    </Router>
-);
-export default Routes
+export class App extends Component {
+
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <div>
+                { this.props.children }
+            </div>
+        )
+    }
+}
+
+function lazyLoadComponent(lazyModule) {
+    return (location, cb) => {
+        lazyModule(module => cb(null, module.default));
+    }
+}
+
+export default (
+    <Route path="/" component={App}>
+        <Route path="cat" getComponent={lazyLoadComponent(CatCon)}/>
+    </Route>
+)

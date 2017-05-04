@@ -1,17 +1,5 @@
-@base-font-size: 200;
-.rem (@property; @values...) {
-        @{property}: ~`(function () {
-    var baseFontSize=@{base-font-size};
-    var sizeList = @{values};
-    if (!Array.isArray(sizeList)) {
-        sizeList = [sizeList];
-    }
-    var rems = [];
-    for (var i = 0; i < sizeList.length; i++) {
-        rems.push(Math.round(sizeList[i] / baseFontSize * 1000000) / 1000000 + 'rem');
-    }
-    return rems.join(' ');
-  }())`;
+@function px2rem($px, $base-font-size: 200) {
+    @return ($px / $base-font-size) * 1rem;
 }
 
 html, body, p, ol, ul, li, dl, dt, dd, blockquote, figure, fieldset, legend, textarea, pre, iframe, hr, h1, h2, h3, h4, h5, h6 {
