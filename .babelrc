@@ -1,12 +1,6 @@
 {
     "presets": [
-        [
-            "es2015",
-            {
-                "modules": false
-            }
-        ],
-        "stage-2",
-        "react"
+        "next/babel",
+        "stage-0"
     ]
 }
