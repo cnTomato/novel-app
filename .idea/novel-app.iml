@@ -6,6 +6,11 @@
       <excludeFolder url="file://$MODULE_DIR$/temp" />
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
     </content>
+    <content url="file://$MODULE_DIR$/../novelspider" />
+    <content url="file://$MODULE_DIR$/../zyapp" />
+    <content url="file://E:/works/CMBI" />
+    <content url="file://E:/works/CMB_TRADE" />
+    <content url="file://E:/works/trade_spa" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
