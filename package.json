@@ -1,25 +1,36 @@
 {
     "name": "novel-app",
     "version": "1.0.0",
-    "description": "based on react",
-    "main": "app.js",
-    "repository": "https://github.com/beyourhero/novel-app.git",
-    "author": "beyourhero <gemini0525@foxmail.com>",
+    "main": "index.js",
     "license": "MIT",
     "scripts": {
-        "dev": "next",
-        "build": "next build",
-        "start": "next start"
+        "start": "webpack-dev-server --hot --inline",
+        "build": "NODE_ENV=production webpack"
     },
     "dependencies": {
-        "babel-preset-stage-0": "^6.24.1",
-        "express": "^4.15.2",
-        "lodash": "^4.17.4",
-        "next": "^2.3.1",
-        "prop-types": "^15.5.8",
-        "react": "~15.4.2",
-        "react-dom": "~15.4.2",
-        "webpack": "^2.3.3",
-        "whatwg-fetch": "^2.0.3"
+        "axios": "^0.16.2",
+        "babel-runtime": "^6.23.0",
+        "react": "^15.6.0",
+        "react-dom": "^15.6.0",
+        "react-router-dom": "^4.1.1",
+        "webpack": "^2.6.1"
+    },
+    "devDependencies": {
+        "babel-core": "^6.25.0",
+        "babel-loader": "^7.0.0",
+        "babel-plugin-transform-runtime": "^6.23.0",
+        "babel-preset-env": "^1.5.2",
+        "babel-preset-react": "^6.24.1",
+        "css-loader": "^0.28.4",
+        "ejs-loader": "^0.3.0",
+        "file-loader": "^0.11.2",
+        "html-webpack-plugin": "^2.28.0",
+        "node-sass": "^4.5.3",
+        "sass-loader": "^6.0.6",
+        "style-loader": "^0.18.2",
+        "uglify-js": "git://github.com/mishoo/UglifyJS2#harmony-v2.8.22",
+        "uglifyjs-webpack-plugin": "^0.4.6",
+        "url-loader": "^0.5.9",
+        "webpack-dev-server": "^2.4.5"
     }
 }
