@@ -7,16 +7,8 @@ module.exports = {
     entry: ['./src/js/index.js'],
     output: {
         path: path.join(__dirname, "/dist"),
-        publicPath: "/",
-        filename: "bundle.js"
-    },
-    devtool: "source-map",
-    devServer: {
-        contentBase: path.join(__dirname, "dist"),
-        compress: true,
-        port: 9001,
-        historyApiFallback: true,
-        hot: true
+        publicPath: "./",
+        filename: "bundle.[hash].js"
     },
     module: {
         rules: [
@@ -67,7 +59,6 @@ module.exports = {
         ]
     },
     plugins: [
-        // new webpack.HotModuleReplacementPlugin(),
         new webpack.DefinePlugin({
             "process.env": {
                 NODE_ENV: JSON.stringify("production")
@@ -75,7 +66,7 @@ module.exports = {
         }),
         new htmlWebpackPlugin({
             title: '搜小说-拒绝广告',
-            filename: 'novel.html',
+            filename: 'index.html',
             template: './template.ejs'
         }),
         new UglifyJSPlugin()

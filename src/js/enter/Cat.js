@@ -3,11 +3,14 @@
  */
 import React, {Component} from "react";
 import axios from "axios";
+import {Link} from "react-router-dom"
+import LoadingCom from "../common/loadingCom";
 
 class Cat extends Component {
     constructor(props) {
         super(props);
-        this.type = "spin";
+        this.screenWidth = window.screen.width;
+        this.screenHeight = window.screen.height;
         this.state = {
             isFetching: true,
             data: {}
@@ -22,7 +25,7 @@ class Cat extends Component {
     initPage() {
         let _this = this;
         axios.get("http://139.199.189.12:3000/cat").then(function (res) {
-            let _data = JSON.parse(res.data.data);
+            let _data = res;
             _this.setState({
                 isFetching: false,
                 data: _data
@@ -33,18 +36,11 @@ class Cat extends Component {
     }
     
     render() {
-        let _dom;
         if (this.state.isFetching) {
-            _dom = <Loading type={this.type} height={48} width={48}/>
+            return <LoadingCom width={this.screenWidth} height={this.screenHeight}/>
         } else {
-            _dom = <CatCom data={this.state.data}/>
+            return <CatCom data={this.state.data}/>
         }
-        
-        return (
-            <div>
-                {_dom}
-            </div>
-        )
     }
 }
 
@@ -54,7 +50,6 @@ class CatCom extends Component {
     }
     
     render() {
-        console.log(this.props)
         return (
             <div className="cat">
                 <h2>男生小说</h2>
@@ -78,7 +73,7 @@ class ListItem extends Component {
             <ul>
                 {
                     this.props.data.map(function (v, k) {
-                        return <li key={k}><p className="name">{v.name}</p><p className="bookCount">{v.bookCount}</p>
+                        return <li key={k}><Link to={{pathname:"searchResult",state:{text:v.name}}}><p className="name">{v.name}</p><p className="bookCount">{v.bookCount}</p></Link>
                         </li>
                     })
                 }

@@ -12,6 +12,7 @@
         "babel-runtime": "^6.23.0",
         "react": "^15.6.0",
         "react-dom": "^15.6.0",
+        "react-hot-loader": "next",
         "react-router-dom": "^4.1.1",
         "webpack": "^2.6.1"
     },
