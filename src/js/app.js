@@ -12,7 +12,6 @@ import Sources from "./enter/Sources";
 import Categories from "./enter/Categories";
 import Chapter from "./enter/Chapter";
 import Cat from "./enter/Cat";
-import NotFound from "./enter/NotFound";
 
 
 const App = () => {
@@ -26,7 +25,6 @@ const App = () => {
                 <Route path='/categories' component={Categories}/>
                 <Route path='/chapter' component={Chapter}/>
                 <Route path='/cat' component={Cat}/>
-                <Route component={NotFound}/>
             </div>
         </Router>
     );
