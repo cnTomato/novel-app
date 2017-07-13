@@ -2,6 +2,7 @@
  * Created by pan on 2017/6/16.
  */
 import React, {Component} from "react";
+import URL from "../common/conf"
 import axios from "axios";
 import {Link} from "react-router-dom";
 import LoadingCom from "../common/loadingCom";
@@ -28,7 +29,7 @@ class Categories extends Component {
         let _this = this;
         axios({
             method: "get",
-            url: "http://139.199.189.12:3000/categories",
+            url: URL+"/categories",
             params: {
                 sourceid: _this.state.sourceInfo._id
             }
@@ -37,6 +38,8 @@ class Categories extends Component {
                 _this.setState({
                     isFetching: false,
                     data: res.data.data
+                },function(){
+                    console.log(this.state.data)
                 })
             }
         }).catch(function (err) {
@@ -90,6 +93,7 @@ class ListItem extends Component {
                 <ul className="chapterList newst">
                     {
                         _reverseData.reverse().map(function (v, k) {
+                            console.log(v)
                             if (k > 5) return false;
                             return <li key={k}><Link to={{
                                 pathname: "/chapter",

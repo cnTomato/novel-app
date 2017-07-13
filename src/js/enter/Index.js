@@ -4,12 +4,19 @@
 import React, {Component} from "react";
 import Common from "../common/common";
 import axios from "axios";
+import URL from "../common/conf";
+import LoadingCom from "../common/loadingCom";
 import {Link, Redirect} from "react-router-dom";
 
 class Index extends Component {
     constructor(props) {
         super(props);
+        this.common = new Common();
+        this.screenWidth = window.screen.width;
+        this.screenHeight = window.screen.height;
         this.state = {
+            isFetching: true,
+            showNav: false,
             redirectTo: null,
             text: "",
             hotSearchWords: [],
@@ -18,52 +25,45 @@ class Index extends Component {
             colors: ["#93c6ef", "#c06cd1", "#f6bd82", "#6accb9", "#e58f90", "#93cfd4"]
         };
         this.handleClick = this.handleClick.bind(this);
-        this.initSearchHotWord = this.initSearchHotWord.bind(this);
-        this.initSearchRecommend = this.initSearchRecommend.bind(this);
+        this.initPage = this.initPage.bind(this);
         this.clearHistory = this.clearHistory.bind(this);
     }
     
     componentWillMount() {
-        this.initSearchHotWord();
-        this.initSearchRecommend();
+        this.initPage();
     }
     
-    initSearchHotWord() {
+    initPage() {
         let _this = this;
-        axios.get("http://139.199.189.12:3000/hotSearchWords").then(function (res) {
+        axios.get(URL + "/hotSearchWords").then(function (res) {
             _this.setState({
-                hotSearchWords: res.data.searchHotWords
+                hotSearchWords: res.data.data
             });
+        }).then(function () {
+            axios.get(URL + "/searchRecommend").then(function (res) {
+                _this.setState({
+                    searchRecommend: res.data.data,
+                    isFetching: false
+                });
+            })
         }).catch(function (err) {
             console.log(err)
-        })
-    }
-    
-    initSearchRecommend() {
-        let _this = this;
-        axios.get("http://139.199.189.12:3000/searchRecommend").then(function (res) {
-            _this.setState({
-                searchRecommend: res.data.hotWords
-            });
-        }).catch(function (err) {
-            console.log(err)
-        })
+        });
     }
     
     
     handleClick() {
-        const common = new Common();
         let _this = this;
         let searchText = document.querySelector(".search").value;
+        let historyList = _this.common.getLocalStorage('historyList') ? _this.common.getLocalStorage('historyList').split(',') : [];
         if (searchText) {
-            let historyList = _this.state.historyList;
             historyList.push(searchText);
             _this.setState({
                 redirectTo: "/searchResult",
                 text: searchText,
                 historyList: historyList
             }, function () {
-                common.setLocalStorage('historyList', JSON.stringify(historyList))
+                _this.common.setLocalStorage('historyList', historyList)
             });
         } else {
             alert('请输入小说名、作者！');
@@ -74,7 +74,8 @@ class Index extends Component {
         this.setState({
             historyList: []
         }, function () {
-            window.localStorage.clear()
+            document.querySelector('#history').classList.add('hide');
+            window.localStorage.clear();
         })
     }
     
@@ -94,16 +95,17 @@ class Index extends Component {
     
     render() {
         const _this = this;
-        const common = new Common();
         const {redirectTo, hotSearchWords, searchRecommend} = this.state;
         let historyList, showList = 'list';
-        if (common.getLocalStorage('historyList')) {
-            historyList = JSON.parse(common.getLocalStorage('historyList'));
+        if (this.common.getLocalStorage('historyList')) {
+            historyList = this.common.getLocalStorage('historyList').split(',');
         } else {
             historyList = [];
             showList = "list hide"
         }
-        if (redirectTo) {
+        if (this.state.isFetching) {
+            return <LoadingCom width={this.screenWidth} height={this.screenHeight}/>
+        } else if (redirectTo) {
             return <Redirect push to={{pathname: redirectTo, state: {text: this.state.text}}}/>
         } else {
             return (
@@ -148,7 +150,7 @@ class Index extends Component {
                         <ul className="list">
                             {
                                 historyList.map(function (v, k) {
-                                    if (k <= 20){
+                                    if (k <= 20) {
                                         let color = _this.state.colors[Math.floor(Math.random() * 6)];
                                         return <li key={k} style={{"backgroundColor": color}}><Link
                                             to={{pathname: "/searchResult", state: {text: v}}}>{v}</Link></li>

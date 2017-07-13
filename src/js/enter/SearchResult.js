@@ -1,10 +1,10 @@
 /**
  * Created by pan on 2017/6/16.
  */
-
 import React, {Component} from "react";
+import URL from "../common/conf"
 import axios from "axios";
-import {Link, Redirect} from "react-router-dom";
+import {Link} from "react-router-dom";
 import LoadingCom from "../common/loadingCom";
 
 class SearchResult extends Component {
@@ -14,8 +14,10 @@ class SearchResult extends Component {
         this.screenHeight = window.screen.height;
         this.state = {
             isFetching: true,
-            data:{},
-            text: this.props.location.state.text
+            showNav:false,
+            data: {},
+            text: this.props.location.state.text,
+            errorMsg: ''
         };
         this.initPage = this.initPage.bind(this);
     }
@@ -28,7 +30,7 @@ class SearchResult extends Component {
         let _this = this;
         axios({
             method: "get",
-            url: "http://139.199.189.12:3000/searchResult",
+            url: URL+"/searchResult",
             params: {
                 text: _this.state.text
             }
@@ -36,11 +38,14 @@ class SearchResult extends Component {
             if (res.data.result === 1) {
                 _this.setState({
                     isFetching: false,
-                    data: res.data.data.books
+                    data: res.data.data
                 })
             }
         }).catch(function (err) {
-            console.log(err)
+            _this.setState({
+                isFetching: false,
+                errorMsg: err
+            })
         })
     }
     
@@ -48,17 +53,7 @@ class SearchResult extends Component {
         if (this.state.isFetching) {
             return <LoadingCom width={this.screenWidth} height={this.screenHeight}/>
         } else {
-            if (this.state.redirectTo) {
-                return <Redirect push to={{
-                    pathname: this.state.redirectTo,
-                    state: {
-                        booksInfo: this.state.booksInfo,
-                        text: this.state.text
-                    }
-                }}/>
-            } else {
-                return <SearchResultCom text={this.state.text} data={this.state.data}/>
-            }
+            return <SearchResultCom text={this.state.text} data={this.state.data}/>
         }
     }
 }
@@ -69,10 +64,14 @@ class SearchResultCom extends Component {
     }
     
     render() {
+        const {data} = this.props;
+        if (!data.length) {
+            return <div className="searcResult error">额，好像没有搜到什么，<Link to={{pathname: "/index"}}>换个词</Link>试试？</div>
+        }
         return (
             <div className="searchResult">
                 <h1>关于『{this.props.text}』小说</h1>
-                <ListItem goto={this.props.goto} data={this.props.data}/>
+                <ListItem data={this.props.data}/>
             </div>
         )
     }

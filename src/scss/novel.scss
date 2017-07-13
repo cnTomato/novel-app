@@ -5,6 +5,8 @@ html {
 #app {
     padding: .15rem;
     color: #fff;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
 }
 
 input::input-placeholder {
@@ -186,7 +188,7 @@ input[type="button"] {
         text-align: center;
         border-radius: .05rem;
     }
-    a{
+    a {
         color: #fff;
         text-decoration: none;
     }
@@ -230,6 +232,10 @@ input[type="button"] {
         margin-bottom: .15rem;
         font-size: .24rem;
         text-align: center;
+    }
+    p{
+        line-height:2;
+        margin-bottom:.15rem;
     }
 }
 

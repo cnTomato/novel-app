@@ -2,6 +2,7 @@
  * Created by pan on 2017/6/16.
  */
 import React, {Component} from "react";
+import URL from "../common/conf"
 import axios from "axios";
 import {Link} from "react-router-dom";
 import LoadingCom from "../common/loadingCom";
@@ -27,7 +28,7 @@ class Sources extends Component {
         let _this = this;
         axios({
             method: "get",
-            url: "http://139.199.189.12:3000/sources",
+            url: URL+"/sources",
             params: {
                 bookid: _this.state.booksInfo.v._id
             }

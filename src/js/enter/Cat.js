@@ -2,6 +2,7 @@
  * Created by pan on 2017/6/16.
  */
 import React, {Component} from "react";
+import URL from "../common/conf"
 import axios from "axios";
 import {Link} from "react-router-dom"
 import LoadingCom from "../common/loadingCom";
@@ -24,7 +25,7 @@ class Cat extends Component {
     
     initPage() {
         let _this = this;
-        axios.get("http://139.199.189.12:3000/cat").then(function (res) {
+        axios.get(URL+"/cat").then(function (res) {
             let _data = res;
             _this.setState({
                 isFetching: false,

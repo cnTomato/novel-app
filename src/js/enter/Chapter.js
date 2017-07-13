@@ -2,6 +2,7 @@
  * Created by pan on 2017/6/16.
  */
 import React, {Component} from "react";
+import URL from "../common/conf"
 import axios from "axios";
 import LoadingCom from "../common/loadingCom";
 
@@ -26,10 +27,9 @@ class Chapter extends Component {
     
     initPage() {
         let _this = this;
-        console.log(_this.state.chapterInfo)
         axios({
             method: "get",
-            url: "http://139.199.189.12:3000/chapter",
+            url: URL+"/chapter",
             params: {
                 link: _this.state.chapterInfo.link
             }
