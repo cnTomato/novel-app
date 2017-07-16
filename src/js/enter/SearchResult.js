@@ -81,7 +81,7 @@ class ListItem extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            errorImg: 'http://temp.im/120x150'
+            errorImg: 'https://temp.im/120x150'
         };
         this.imgError = this.imgError.bind(this)
     }
