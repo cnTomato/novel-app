@@ -237,6 +237,17 @@ input[type="button"] {
         line-height: 2;
         margin-bottom: .15rem;
     }
+    .navLink {
+        display: flex;
+        margin: .15rem 0;
+        span {
+            display: block;
+            flex: 1;
+            width: 50%;
+            text-align: center;
+            color: #fff;
+        }
+    }
 }
 
 .loading {

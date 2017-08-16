@@ -29,7 +29,7 @@ class Categories extends Component {
         let _this = this;
         axios({
             method: "get",
-            url: URL+"/categories",
+            url: URL + "/categories",
             params: {
                 sourceid: _this.state.sourceInfo._id
             }
@@ -38,7 +38,7 @@ class Categories extends Component {
                 _this.setState({
                     isFetching: false,
                     data: res.data.data
-                },function(){
+                }, function () {
                     console.log(this.state.data)
                 })
             }
@@ -92,15 +92,16 @@ class ListItem extends Component {
                 <h3>最新章节</h3>
                 <ul className="chapterList newst">
                     {
-                        _reverseData.reverse().map(function (v, k) {
-                            console.log(v)
+                        _reverseData.reverse().map(function (v, k, arr) {
                             if (k > 5) return false;
                             return <li key={k}><Link to={{
                                 pathname: "/chapter",
                                 state: {
                                     booksInfo: _this.props.booksInfo,
                                     sourceInfo: _this.props.sourceInfo,
-                                    chapterInfo: v
+                                    categoriesInfo: _this.props.data,
+                                    chapterInfo: v,
+                                    currentIndex: arr.length - k
                                 }
                             }}>{v.title}</Link></li>
                         })
@@ -115,7 +116,9 @@ class ListItem extends Component {
                                 state: {
                                     booksInfo: _this.props.booksInfo,
                                     sourceInfo: _this.props.sourceInfo,
-                                    chapterInfo: v
+                                    categoriesInfo: _this.props.data,
+                                    chapterInfo: v,
+                                    currentIndex: k
                                 }
                             }}>{v.title}</Link></li>
                         })
