@@ -1,16 +1,14 @@
 /**
  * Created by pan on 2017/6/17.
  */
-export default class Common {
-    
-    setLocalStorage(item, val) {
-        if (item && val) window.localStorage.setItem(item, val);
+
+export const setLoaclStorage = (item, val) => {
+    if (item && val) window.localStorage.setItem(item, val);
+}
+
+export const getLoaclStorage = (item, val) => {
+    if (item) {
+        return window.localStorage.getItem(item);
     }
-    
-    getLocalStorage(item) {
-        if (item){
-            return window.localStorage.getItem(item);
-        }
-        return false;
-    }
+    return false;
 }

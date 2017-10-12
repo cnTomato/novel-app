@@ -2,7 +2,7 @@
  * Created by pan on 2017/6/16.
  */
 import React, {Component} from "react";
-import Common from "../common/common";
+import {getLoaclStorage, setLoaclStorage} from "../common/common";
 import axios from "axios";
 import URL from "../common/conf";
 import LoadingCom from "../common/loadingCom";
@@ -11,7 +11,6 @@ import {Link, Redirect} from "react-router-dom";
 class Index extends Component {
     constructor(props) {
         super(props);
-        this.common = new Common();
         this.screenWidth = window.screen.width;
         this.screenHeight = window.screen.height;
         this.state = {
@@ -55,7 +54,7 @@ class Index extends Component {
     handleClick() {
         let _this = this;
         let searchText = document.querySelector(".search").value;
-        let historyList = _this.common.getLocalStorage('historyList') ? _this.common.getLocalStorage('historyList').split(',') : [];
+        let historyList = getLoaclStorage('historyList') ? getLoaclStorage('historyList').split(',') : [];
         if (searchText) {
             historyList.push(searchText);
             _this.setState({
@@ -63,7 +62,7 @@ class Index extends Component {
                 text: searchText,
                 historyList: historyList
             }, function () {
-                _this.common.setLocalStorage('historyList', historyList)
+                setLoaclStorage('historyList', historyList)
             });
         } else {
             alert('请输入小说名、作者！');
@@ -97,8 +96,8 @@ class Index extends Component {
         const _this = this;
         const {redirectTo, hotSearchWords, searchRecommend} = this.state;
         let historyList, showList = 'list';
-        if (this.common.getLocalStorage('historyList')) {
-            historyList = this.common.getLocalStorage('historyList').split(',');
+        if (getLoaclStorage('historyList')) {
+            historyList = getLoaclStorage('historyList').split(',');
         } else {
             historyList = [];
             showList = "list hide"

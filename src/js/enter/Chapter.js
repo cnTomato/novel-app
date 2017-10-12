@@ -5,7 +5,6 @@ import React, {Component} from "react";
 import URL from "../common/conf"
 import axios from "axios";
 import LoadingCom from "../common/loadingCom";
-import Alloyfinger from 'alloyfinger/react/react-alloy_finger.jsx';
 
 class Chapter extends Component {
     constructor(props) {
@@ -22,7 +21,6 @@ class Chapter extends Component {
             data: {}
         };
         this.initPage = this.initPage.bind(this);
-        this.onSwipe = this.onSwipe.bind(this);
     }
     
     componentWillMount() {
@@ -72,31 +70,24 @@ class Chapter extends Component {
         }
     }
     
-    onSwipe(evt) {
-        let direction = evt.direction;
-        direction === "Left" ? this.nextChapter() : this.prevChapter();
-    }
-    
     render() {
         if (this.state.isFetching) {
             return <div><LoadingCom width={this.screenWidth} height={this.screenHeight}/></div>
         } else {
             let _con = this.state.data.content;
             return (
-                <Alloyfinger onSwipe={this.onSwipe.bind(this)}>
-                    <div className="chapter">
-                        <h1>{this.state.data.title}</h1>
-                        <div className="navLink">
-                            <span onClick={this.prevChapter.bind(this)}>上一章</span>
-                            <span onClick={this.nextChapter.bind(this)}>下一章</span>
-                        </div>
-                        <div className="content" dangerouslySetInnerHTML={{__html: _con}}></div>
-                        <div className="navLink">
-                            <span onClick={this.prevChapter.bind(this)}>上一章</span>
-                            <span onClick={this.nextChapter.bind(this)}>下一章</span>
-                        </div>
+                <div className="chapter">
+                    <h1>{this.state.data.title}</h1>
+                    <div className="navLink">
+                        <span onClick={this.prevChapter.bind(this)}>上一章</span>
+                        <span onClick={this.nextChapter.bind(this)}>下一章</span>
                     </div>
-                </Alloyfinger>
+                    <div className="content" dangerouslySetInnerHTML={{__html: _con}}></div>
+                    <div className="navLink">
+                        <span onClick={this.prevChapter.bind(this)}>上一章</span>
+                        <span onClick={this.nextChapter.bind(this)}>下一章</span>
+                    </div>
+                </div>
             )
         }
     }
