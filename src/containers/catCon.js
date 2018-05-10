@@ -1,14 +1,19 @@
+/*
+* Created by pan 2018/4/25
+*
+*/
+
 import React, {Component} from "react";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 import {withRouter} from 'react-router-dom'
-import Index from "../compoents/indexCom"
-import * as actions from "../actions/indexAction";
+import Cat from "../compoents/catCom"
+import * as actions from "../actions/catAction";
 import Loading from "../common/Loading"
 
 function mapStateToProps(state) {
     return {
-        _i_data: state.indexReducer
+        _i_data: state.catReducer
     }
 }
 
@@ -18,7 +23,7 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-class indexCon extends Component {
+class catCon extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -27,16 +32,16 @@ class indexCon extends Component {
     }
 
     componentWillMount() {
-        console.log(this)
         this.props.actions.initPage()
     }
 
     render() {
         const {_i_data} = this.props;
+        console.log(_i_data)
         if (_i_data.isFetching) {
             return <Loading/>
         } else {
-            return <Index hotwords={_i_data.hotwords} recwords={_i_data.recwords}/>
+            return <Cat data={_i_data.data}/>
         }
     }
 }
@@ -44,4 +49,4 @@ class indexCon extends Component {
 export default withRouter(connect(
     mapStateToProps,
     mapDispatchToProps
-)(indexCon));
+)(catCon));

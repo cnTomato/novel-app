@@ -1,10 +1,8 @@
 import axios from "axios"
 
-export const GET_HOTWORDS_START = "GET_HOTWORDS_START";
 export const GET_HOTWORDS_SUCCESS = "GET_HOTWORDS_SUCCESS";
 export const GET_HOTWORDS_FAIL = "GET_HOTWORDS_FAILE";
 
-export const GET_RECWORDS_START = "GET_RECWORDS_START";
 export const GET_RECWORDS_SUCCESS = "GET_RECWORDS_SUCCESS";
 export const GET_RECWORDS_FAIL = "GET_RECWORDS_FAILE";
 
@@ -15,11 +13,6 @@ export const Init = {
     recwords: []
 };
 
-const getHotwordsStart = () => {
-    return {
-        type: GET_HOTWORDS_START
-    }
-};
 
 const getHotwordsSuccess = (data) => {
     return {
@@ -35,11 +28,6 @@ const getHotwordsFail = (data) => {
     }
 };
 
-const getRecwordsStart = () => {
-    return {
-        type: GET_RECWORDS_START
-    }
-};
 
 const getRecwordsSuccess = (data) => {
     return {
@@ -55,7 +43,7 @@ const getRecwordsFail = (data) => {
     }
 };
 
-export const initPage = (dispatch) => {
+export const initPage = () => {
     return dispatch => {
         axios.all([actionGetHotwords(), actionGetRecwords()]).then(axios.spread((hot, rec) => {
             if (hot.data.result === 1) {

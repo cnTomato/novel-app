@@ -1,0 +1,44 @@
+.chapter {
+    position: relative;
+    padding: 15px 15px 0 0;
+    line-height: 2;
+}
+
+.chapter .title {
+    font-size: 36px;
+    text-align: center;
+}
+
+.chapter .author {
+    font-size: 18px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.chapter-content {
+    padding: 30px;
+}
+
+.chapter .prev, .chapter .next {
+    position: fixed;
+    left: 21.5%;
+    top: 0;
+    width: 60px;
+    height: 100%;
+    transition: all .2s linear;
+    z-index: 9;
+    background: rgba(0, 0, 0, 0) url("../images/prev.png") no-repeat scroll center;
+    background-size: 60px auto;
+}
+
+.chapter .next {
+    left: auto;
+    right: 0;
+    background: rgba(0, 0, 0, 0) url("../images/next.png") no-repeat scroll center;
+    background-size: 60px auto;
+}
+
+.chapter .prev:hover, .chapter .next:hover {
+    background-color: rgba(0, 0, 0, .1);
+    transition: all .2s linear;
+}

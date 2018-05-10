@@ -1,0 +1,33 @@
+.sort .items {
+    display: flex;
+    padding: 15px 0;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.sort .items:last-child {
+    border-bottom: none;
+}
+
+.sort .item-img, .sort .item-img div {
+    width: 90px;
+}
+
+.sort .item-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%;
+    font-size: 14px;
+}
+
+.sort .title {
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.sort .item-content p:last-child {
+    width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

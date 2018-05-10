@@ -1,0 +1,29 @@
+.bookinfo {
+    display: flex;
+    padding: 15px 15px 15px 0;
+    flex-wrap: wrap;
+}
+
+.bookinfo .book-img {
+    padding-bottom: 15px;
+    width: 10%;
+}
+
+.bookinfo .book-intro {
+    padding-bottom: 15px;
+    padding-left: 15px;
+    width: 90%;
+}
+
+.bookinfo .book-chapters {
+    display: flex;
+    padding-top: 15px;
+    border-top: 1px solid #f5f5f5;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.bookinfo .book-chapters p {
+    width: 33.333333%;
+    cursor: pointer;
+}

@@ -5,14 +5,19 @@
     "dependencies": {
         "axios": "^0.18.0",
         "history": "^4.7.2",
+        "lowdb": "^1.0.0",
+        "minireset.css": "0.0.3",
         "react": "^16.3.2",
         "react-dom": "^16.3.2",
-        "react-loadable": "^5.3.1",
+        "react-icons": "^2.2.7",
+        "react-lazy-images": "^0.9.1",
+        "react-loadable": "^5.4.0",
         "react-loading": "^2.0.2",
         "react-redux": "^5.0.7",
         "react-router-dom": "^4.2.2",
         "react-router-redux": "^5.0.0-alpha.9",
         "react-scripts": "1.1.4",
+        "react-spring": "^5.1.2",
         "redux": "^4.0.0",
         "redux-logger": "^3.0.6",
         "redux-thunk": "^2.2.0"
@@ -25,6 +30,7 @@
     },
     "devDependencies": {
         "babel-plugin-syntax-dynamic-import": "^6.18.0",
+        "prop-types": "^15.6.1",
         "redux-devtools": "^3.4.1"
     }
 }
