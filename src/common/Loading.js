@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import ReactLoading from 'react-loading';
-import "../assets/styles/loadingCom.css"
 
 class Loading extends Component {
     constructor(props) {
