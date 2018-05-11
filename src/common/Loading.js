@@ -6,8 +6,8 @@ class Loading extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            type: "spin",
-            color: "rgb(10,91,255)"
+            type: "bars",
+            color: "rgb(0,209,178)"
         }
     }
 
@@ -15,7 +15,7 @@ class Loading extends Component {
     render() {
         return (
             <div className="loading-com">
-                <ReactLoading type={this.state.type} color={this.state.color} width={64} height={64}/>
+                <ReactLoading type={this.state.type} color={this.state.color} width={32} height={32}/>
             </div>
         );
     }
