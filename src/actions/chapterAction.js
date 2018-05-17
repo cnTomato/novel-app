@@ -5,8 +5,8 @@
 
 import axios from "axios"
 
-export const GET_RESULT_SUCCESS = "GET_RESULT_SUCCESS";
-export const GET_RESULT_FAIL = "GET_RESULT_FAIL";
+export const GET_CHAPTER_SUCCESS = "GET_CHAPTER_SUCCESS";
+export const GET_CHAPTER_FAIL = "GET_CHAPTER_FAIL";
 
 
 export const Init = {
@@ -15,31 +15,32 @@ export const Init = {
 };
 
 
-const getResultSuccess = (data) => {
+const getChapterSuccess = (data) => {
     return {
-        type: GET_RESULT_SUCCESS,
+        type: GET_CHAPTER_SUCCESS,
         data: data
     }
 };
 
-const getResultFail = (data) => {
+const getChapterFail = (data) => {
     return {
-        type: GET_RESULT_FAIL,
+        type: GET_CHAPTER_FAIL,
         msg: data
     }
 };
 
 
 export const initPage = (params) => {
+    console.log(params,"action")
     return dispatch => {
         axios.get("https://api.steps.info/chapter", {params: {url: params.url}}).then(res => {
             if (res.data.result === 1) {
-                dispatch(getResultSuccess(res.data))
+                dispatch(getChapterSuccess(res.data))
             } else {
-                dispatch(getResultFail(res.data))
+                dispatch(getChapterFail(res.data))
             }
         }).catch(err => {
-            dispatch(getResultFail(err))
+            dispatch(getChapterFail(err))
         })
     }
 };

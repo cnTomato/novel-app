@@ -20,8 +20,9 @@ class Bookinfo extends Component {
 
     search(e) {
         let url = e.currentTarget.attributes["data-url"].value;
+        console.log(url,"bookinfo")
         db.set("current.chapterurl", url).write();
-        this.context.router.history.push({pathname: "/chapter", state: {"url": url}})
+        this.context.router.history.push({pathname: "/chapter", state: {"chapterurl": url}})
     }
 
     render() {

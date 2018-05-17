@@ -3,16 +3,16 @@
 */
 
 import {
-    GET_RESULT_SUCCESS,
-    GET_RESULT_FAIL,
+    GET_Book_SUCCESS,
+    GET_Book_FAIL,
     Init
 } from "../actions/bookinfoAction"
 
 export const bookinfoReducer = (state = Init, action) => {
     switch (action.type) {
-        case GET_RESULT_SUCCESS:
+        case GET_Book_SUCCESS:
             return Object.assign({}, state, {data: action.data, isFetching: false});
-        case GET_RESULT_FAIL:
+        case GET_Book_FAIL:
             return Object.assign({}, state, {msg: action.msg, isFetching: false});
         default:
             return state;

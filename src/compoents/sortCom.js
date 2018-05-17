@@ -5,15 +5,19 @@
 import React, {Component} from 'react';
 import {LazyImage} from "react-lazy-images";
 import "../assets/styles/sort.css"
+import db from "../db";
+import PropTypes from "prop-types";
 
 class Sort extends Component {
-    constructor(props) {
-        super(props);
-        this.search = this.search.bind(this);
-    }
 
-    search() {
+    static contextTypes = {
+        router: PropTypes.object
+    };
 
+    search(title) {
+        db.set("current.text", title).write();
+        if (!db.get("history").write().includes(title)) db.get("history").push(title).write();
+        this.context.router.history.push({pathname: "/result", state: {"text": title}})
     }
 
     render() {
@@ -23,7 +27,7 @@ class Sort extends Component {
                 {
                     data.map((v, k) => {
                         let cover = decodeURIComponent(v.cover);
-                        return <div key={k} className="items">
+                        return <div key={k} className="items" onClick={this.search.bind(this, v.title)}>
                             <div className="item-img">
                                 <LazyImage
                                     src={cover.replace(/\/agent\//g, "")}
@@ -36,10 +40,10 @@ class Sort extends Component {
                             </div>
                             <div className="item-content">
                                 <h5 className="title">{v.title}</h5>
-                                <p className="author">{"作者：" + v.author}</p>
-                                <p className="major">{"类型：" + v.minorCate}</p>
-                                <p className="rentation">{"留存率：" + v.retentionRatio + "%"}</p>
-                                <p className="shortIntro">{"简介：" + v.shortIntro}</p>
+                                <div className="author">作者：<span>{v.author}</span></div>
+                                <div className="major">类型：<span>{v.minorCate}</span></div>
+                                <div className="rentation">留存率：<span>{v.retentionRatio + "%"}</span></div>
+                                <div className="shortIntro">简介：{v.shortIntro}</div>
                             </div>
                         </div>
                     })

@@ -31,7 +31,7 @@ class Chapter extends Component {
 
     gocategories(e) {
         let url = e.currentTarget.attributes["data-url"].value;
-        this.context.router.history.push({pathname: "/bookInfo", state: {url: url}})
+        this.context.router.history.push({pathname: "/bookInfo", state: {url: url+"/"}})
     }
 
     render() {

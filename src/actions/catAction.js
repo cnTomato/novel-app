@@ -5,8 +5,8 @@
 
 import axios from "axios"
 
-export const GET_RESULT_SUCCESS = "GET_RESULT_SUCCESS";
-export const GET_RESULT_FAIL = "GET_RESULT_FAIL";
+export const GET_CAT_SUCCESS = "GET_CAT_SUCCESS";
+export const GET_CAT_FAIL = "GET_CAT_FAIL";
 
 
 export const Init = {
@@ -17,14 +17,14 @@ export const Init = {
 
 const getResultSuccess = (data) => {
     return {
-        type: GET_RESULT_SUCCESS,
+        type: GET_CAT_SUCCESS,
         data: data
     }
 };
 
 const getResultFail = (data) => {
     return {
-        type: GET_RESULT_FAIL,
+        type: GET_CAT_FAIL,
         msg: data
     }
 };

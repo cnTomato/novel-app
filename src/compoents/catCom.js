@@ -29,10 +29,6 @@ class Cat extends Component {
 }
 
 class CatItem extends Cat {
-    constructor(props) {
-        super(props)
-    }
-
     render() {
         const {data, title} = this.props;
         return (

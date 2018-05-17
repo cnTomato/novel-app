@@ -55,7 +55,6 @@ class resultCon extends Component {
 
     render() {
         const {_i_data} = this.props;
-        console.log(_i_data)
         if (_i_data.isFetching) {
             return <Loading/>
         } else {

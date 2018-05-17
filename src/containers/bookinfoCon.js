@@ -14,7 +14,7 @@ import db from "../db";
 
 function mapStateToProps(state) {
     return {
-        _i_data: state.bookinfoReducer
+        _i_book: state.bookinfoReducer
     }
 }
 
@@ -49,17 +49,18 @@ class bookinfoCon extends Component {
         }, () => {
             this.props.actions.initPage({
                 url: url
-            })
+            });
         })
     }
 
     render() {
-        const {_i_data} = this.props;
-        console.log(_i_data)
-        if (_i_data.isFetching) {
+        const {_i_book} = this.props;
+
+        console.log(this.props)
+        if (_i_book.isFetching) {
             return <Loading/>
         } else {
-            return <Bookinfo data={_i_data.data}/>
+            return <Bookinfo data={_i_book.data}/>
         }
     }
 }

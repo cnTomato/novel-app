@@ -1,3 +1,24 @@
+.sort-tab-header {
+    padding: 15px 0;
+    border-bottom: 1px solid #f5f5f5;
+    line-height: 2;
+}
+
+.sort-type, .sort-sex {
+    display: flex;
+}
+
+.sort-tab-header span {
+    display: block;
+    padding-right: 30px;
+}
+
+.sort-tab-header span:hover, .sort-tab-header span.active {
+    color: #f87562;
+    cursor: pointer;
+    transition: all .2s linear;
+}
+
 .sort .items {
     display: flex;
     padding: 15px 0;
@@ -17,6 +38,10 @@
     padding-right: 15px;
     width: 100%;
     font-size: 14px;
+}
+
+.sort .item-content span {
+    color: #f87562;
 }
 
 .sort .title {

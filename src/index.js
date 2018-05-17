@@ -4,16 +4,36 @@ import {Provider} from 'react-redux';
 import {Router, Route, Link} from 'react-router-dom';
 import registerServiceWorker from './registerServiceWorker';
 import {store, history} from "./store"
+import Loadable from "react-loadable"
+import Loading from "./common/Loading"
 import db from "./db"
 import "minireset.css";
 import "./assets/styles/novel.css"
 //pages
-import indexCon from "./containers/indexCon";
-import catCon from "./containers/catCon";
-import sortCon from "./containers/sortCon";
-import resultCon from "./containers/resultCon";
-import bookinfoCon from "./containers/bookinfoCon";
-import chapterCon from "./containers/chapterCon";
+const index = Loadable({
+    loader: () => import("./containers/indexCon"),
+    loading: Loading
+});
+const cat = Loadable({
+    loader: () => import("./containers/catCon"),
+    loading: Loading
+});
+const sort = Loadable({
+    loader: () => import("./containers/sortCon"),
+    loading: Loading
+});
+const result = Loadable({
+    loader: () => import("./containers/resultCon"),
+    loading: Loading
+});
+const bookinfo = Loadable({
+    loader: () => import("./containers/bookinfoCon"),
+    loading: Loading
+});
+const chapter = Loadable({
+    loader: () => import("./containers/chapterCon"),
+    loading: Loading
+});
 
 db.defaults({current: {}, history: []}).write();
 ReactDOM.render(
@@ -32,39 +52,18 @@ ReactDOM.render(
                         </a>
                     </div>
                     <div className="navbar-menu">
-                        <Link to={{pathname: "/"}} className="navbar-item">首页</Link>
-                        <Link to={{pathname: "/cat"}} className="navbar-item">分类</Link>
-                        {/*<div className="navbar-item has-dropdown is-hoverable">*/}
-                        {/*<a href="" className="navbar-link">男性</a>*/}
-                        {/*<div className="navbar-dropdown is-boxed">*/}
-                        {/*<a className="navbar-item">最热榜</a>*/}
-                        {/*<a className="navbar-item">好评榜</a>*/}
-                        {/*<a className="navbar-item">热搜榜</a>*/}
-                        {/*<a className="navbar-item">潜力榜</a>*/}
-                        {/*<a className="navbar-item">留存榜</a>*/}
-                        {/*<a className="navbar-item">完结榜</a>*/}
-                        {/*</div>*/}
-                        {/*</div>*/}
-                        {/*<div className="navbar-item has-dropdown is-hoverable">*/}
-                        {/*<a href="" className="navbar-link">女性</a>*/}
-                        {/*<div className="navbar-dropdown is-boxed">*/}
-                        {/*<a className="navbar-item">最热榜</a>*/}
-                        {/*<a className="navbar-item">好评榜</a>*/}
-                        {/*<a className="navbar-item">热搜榜</a>*/}
-                        {/*<a className="navbar-item">潜力榜</a>*/}
-                        {/*<a className="navbar-item">留存榜</a>*/}
-                        {/*<a className="navbar-item">完结榜</a>*/}
-                        {/*</div>*/}
-                        {/*</div>*/}
+                        <a href="./">首页</a>
+                        <Link to={{pathname: "/cat"}}>分类</Link>
+                        <Link to={{pathname: "/sort"}}>排行榜</Link>
                     </div>
                 </nav>
                 <div className="content">
-                    <Route exact path="/" component={indexCon}/>
-                    <Route path="/cat" component={catCon}/>
-                    <Route path="/sort" component={sortCon}/>
-                    <Route path="/result" component={resultCon}/>
-                    <Route path="/bookinfo" component={bookinfoCon}/>
-                    <Route path="/chapter" component={chapterCon}/>
+                    <Route exact path="/" component={index}/>
+                    <Route path="/cat" component={cat}/>
+                    <Route path="/sort" component={sort}/>
+                    <Route path="/result" component={result}/>
+                    <Route path="/bookinfo" component={bookinfo}/>
+                    <Route path="/chapter" component={chapter}/>
                 </div>
             </div>
         </Router>

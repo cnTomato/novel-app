@@ -46,3 +46,11 @@ a {
     position: relative;
     padding-left: 23vw;
 }
+
+.loading-com {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}

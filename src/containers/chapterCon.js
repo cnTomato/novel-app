@@ -14,7 +14,7 @@ import db from "../db";
 
 function mapStateToProps(state) {
     return {
-        _i_data: state.bookinfoReducer
+        _i_data: state.chapterReducer
     }
 }
 
@@ -39,11 +39,12 @@ class chapterCon extends Component {
     componentWillMount() {
         let url;
         try {
-            url = this.context.router.route.location.state.url;
+            url = this.context.router.route.location.state.chapterurl;
+            console.log(url,"url router")
         } catch (e) {
             url = db.get("current").get("chapterurl").write();
+            console.log(url,"storage url")
         }
-
         this.setState({
             url: url
         }, () => {
