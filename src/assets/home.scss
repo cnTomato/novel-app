@@ -17,13 +17,20 @@
 }
 
 .home {
+    .banner{
+        img{
+            display: block;
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+    }
     .nav {
         display: flex;
         justify-content: space-around;
         padding: 15px 0;
         text-align: center;
         background-color: #fff;
-        border-bottom: 15px solid #f8f8f8;
         a {
             font-size: 14px;
             text-decoration: none;
@@ -45,11 +52,13 @@
     }
     .title {
         display: flex;
-        padding: 0 15px;
-        font-size: 24px;
+        margin: 30px 0 15px;
+        padding-left: 15px;
+        font-size: 21px;
         justify-content: space-between;
         align-items: center;
         font-weight: 500;
+        border-left: 4px solid rgb(32, 160, 255);
         a {
             font-size: 15px;
             text-decoration: none;
@@ -59,7 +68,6 @@
     }
     .item {
         margin-bottom: 15px;
-        padding: 0 15px;
         .novel-title {
             font-size: 17px;
             font-weight: 600;
@@ -84,5 +92,32 @@
                 }
             }
         }
+        .novel-desc{
+            display: -webkit-box;
+            overflow : hidden;
+            text-overflow: ellipsis;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+    }
+}
+.cat_list_tab{
+    .cat_list_content{
+        padding: 0 15px;
+    }
+    .cat_list_pic{
+        max-height: 140px;
+        overflow: hidden;
+    }
+    .cat_list_title{
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        line-height: 2;
+    }
+}
+.new_sug_list{
+    .cat_list_pic{
+        max-height: 190px;
     }
 }

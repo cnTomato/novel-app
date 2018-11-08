@@ -10,6 +10,9 @@ class App extends Component {
 				<Header/>
 				<Home/>
 				<Routes/>
+				<footer className="app-footer">
+					Designed & Developed by Pan
+				</footer>
 			</div>
 		);
 	}
