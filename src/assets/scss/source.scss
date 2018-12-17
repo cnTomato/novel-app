@@ -1,0 +1,46 @@
+.source {
+    padding: 15px;
+
+    .item {
+        .list {
+            display: none;
+            position: relative;
+            margin-bottom: 15px;
+            padding: 15px;
+            background-color: rgba(0, 0, 0, .1);
+
+            &.hide {
+                display: none;
+            }
+
+            h3 {
+                text-align: center;
+            }
+
+            a {
+                display: block;
+                line-height: 32px;
+            }
+
+            &:after {
+                position: absolute;
+                display: block;
+                content: '';
+                width: 0;
+                height: 0;
+                top: -16px;
+                left: 50%;
+                margin-left: -8px;
+                border-bottom: 16px solid rgba(0, 0, 0, .1);
+                border-left: 16px solid transparent;
+                border-right: 16px solid transparent;
+            }
+        }
+
+        &.show {
+            .list {
+                display: block;
+            }
+        }
+    }
+}

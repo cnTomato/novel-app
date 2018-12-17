@@ -1,0 +1,21 @@
+.cat {
+    padding: 15px 0;
+
+    .tag-container {
+        margin-bottom: 15px;
+
+        .tags {
+            display: flex;
+            padding-top: 9px;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        .tags > div {
+            margin-left: 9px;
+            margin-bottom: 9px;
+        }
+    }
+}
+
+

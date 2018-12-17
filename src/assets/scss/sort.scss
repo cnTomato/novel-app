@@ -1,0 +1,43 @@
+.sort {
+    .sort-container {
+        margin-top: 15px;
+
+        .list {
+            counter-reset: section;
+
+            a {
+                position: relative;
+                display: flex;
+                margin-bottom: 10px;
+                justify-content: space-between;
+                padding-left: 30px;
+
+                &::before {
+                    position: absolute;
+                    display: block;
+                    width: 20px;
+                    height: 20px;
+                    left: 0;
+                    background-color: #efefef;
+                    counter-increment: section;
+                    content: counter(section);
+                    color: #333;
+                    text-align: center;
+                    border-radius: 5px;
+                }
+
+                &:nth-child(-n+3) {
+                    &::before {
+                        background-color: red;
+                        color: #fff;
+                    }
+                }
+
+                em {
+                    font-style: normal;
+                    color: red;
+                }
+            }
+        }
+    }
+}

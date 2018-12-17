@@ -1,0 +1,73 @@
+.navbar {
+    padding: 10px 0;
+    text-align: center;
+    background-color: #fff;
+
+    .icon {
+        margin-bottom: 5px;
+        padding: 5px;
+        border-radius: 50%;
+        border: 1px solid #108ee9;
+    }
+}
+
+.free {
+    .am-card-body {
+        box-sizing: border-box;
+        display: flex;
+        padding: 15px;
+        width: 100%;
+        overflow-x: scroll;
+        -webkit-overflow-scrolling: touch;
+        font-size: 12px;
+
+        a {
+            display: block;
+            margin-right: 15px;
+            min-width: 18%;
+            max-width: 18%;
+            //overflow: hidden;
+            img {
+                display: block;
+                max-width: 100%;
+                height: auto;
+            }
+
+            span {
+                display: block;
+                width: 100%;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+    }
+
+}
+
+.hot {
+    .hot_list--item {
+        margin-top: 15px;
+    }
+
+    .item {
+        margin-bottom: 15px;
+    }
+
+}
+
+.recommend--item {
+    margin: 15px 0;
+    img {
+        display: block;
+        width: 75px;
+        height: 100px;
+    }
+    span{
+        display: block;
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}

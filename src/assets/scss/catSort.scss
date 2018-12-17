@@ -1,0 +1,58 @@
+.infinite-scroll {
+    padding: 15px;
+    background-color: #fff;
+}
+
+.item {
+    margin-bottom: 15px;
+
+    .avatar {
+        flex: 1;
+        max-height: 126px;
+        overflow: hidden;
+
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+
+        }
+    }
+
+    .detail {
+        flex: 3;
+
+        h3 {
+            margin-top: 0;
+        }
+
+        p {
+            margin-top: 10px;
+            line-height: 20px;
+            opacity: .6;
+
+            &.des {
+                height: 60px;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 3;
+                overflow: hidden;
+            }
+        }
+
+        span {
+            position: relative;
+
+            &:not(:last-child):after {
+                display: inline-block;
+                content: '|';
+                padding: 0 5px;
+                opacity: .2;
+            }
+        }
+    }
+}
+
+.am-activity-indicator {
+    justify-content: center;
+}

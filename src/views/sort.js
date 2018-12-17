@@ -1,18 +1,55 @@
 /*
- * Created by pan 2018/11/3
+ * Created by pan 2018-12-12
  */
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import { Icon, Card } from "antd-mobile";
+import "../assets/scss/sort.scss";
 
 class Sort extends Component {
-	render(){
-		return (
-			<div className='home'>
-				<h1>Welcome to my portfolio contact</h1>
-				<p> Feel free to browse around and learn more about me.</p>
-			</div>
-		);
-	}
+    constructor(props){
+        super(props);
+        this.state = {
+            data: {}
+        };
+    }
+    
+    componentDidMount(){
+        axios({
+            url: "/sort"
+        }).then(res => {
+            this.setState({data: {...this.data, ...res.data.data}});
+        });
+    }
+    
+    static formatNumber(v){
+        return v.toString().length > 4 ? v / 1000 + "万" : v;
+    }
+    
+    render(){
+        return (
+            <div className="sort">
+                {
+                    Object.entries(this.state.data).map((item, key) => (
+                        <Card key={key} className="sort-container" full>
+                            <Card.Header title={item[0]} extra={<Link
+                                to={{pathname: "/list", search: `?cate=${item[0]}&page=novel_choiceness`}}><Icon
+                                type="right" size="md"/></Link>}/>
+                            <Card.Body className="list">
+                                {
+                                    item[1].map((v, k) => (
+                                        <Link to={{pathname: "/source", search: `?text=${v.title}`}}
+                                              key={k}>{v.title}<span><em>{Sort.formatNumber(v.followers_num)}</em>人搜</span></Link>
+                                    ))
+                                }
+                            </Card.Body>
+                        </Card>
+                    ))
+                }
+            </div>
+        );
+    }
 }
 
 export default Sort;
-

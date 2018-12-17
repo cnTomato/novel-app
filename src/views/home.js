@@ -1,222 +1,202 @@
 /*
- * Created by pan 2018/11/3
+ * Created by pan 2018-12-04
  */
 import React, { Component } from "react";
-import { Layout, Carousel, Tabs } from "element-react";
 import { Link } from "react-router-dom";
+import { Flex, Carousel, WhiteSpace, Card, Tabs } from "antd-mobile";
+import BookItem from "../components/BookItem";
 import axios from "axios";
-import { forIn } from "lodash";
-import "../assets/home.scss";
-
+import Icon from "../components/Icon";
+import "../assets/scss/home.scss";
 
 class Home extends Component {
-	constructor(props){
-		super(props);
-		this.state = {
-			banner: [],
-			cate_top: [],
-			curr_sug: [],
-			free: null,
-			hot_list: [],
-			new_sug: {}
-		};
-	}
-	
-	componentWillMount(){
-		axios.get("http://localhost:3001/").then(res => {
-			const {banner, cate_top, curr_sug, free, hot_list, new_sug} = res.data.data;
-			this.setState({
-				banner: banner,
-				cate_top: cate_top,
-				curr_sug: curr_sug,
-				free: free,
-				hot_list: hot_list,
-				new_sug: new_sug
-			});
-		});
-	}
-	
-	render(){
-		return (
-			<div className='home'>
-				<Layout.Row gutter="15">
-					<Layout.Col span="16" offset="4">
-						<Carousel className="banner">
-							{
-								this.state.banner.map((item, index) => {
-									return (
-										<Carousel.Item key={index}>
-											<Link to="/search">
-												<img src={item.icon} alt={item.title}/>
-											</Link>
-										</Carousel.Item>
-									);
-								})
-							}
-						</Carousel>
-					</Layout.Col>
-				</Layout.Row>
-				<Layout.Row>
-					<Layout.Col span="16" offset="4">
-						<div className="hot_list list">
-							<div className="title">热搜榜单<Link to="/hot_list">更多</Link></div>
-							<Tabs activeName="1" onTabClick={(tab) => console.log(tab.props.name)}
-							      className="hot_list_tab">
-								{
-									this.state.hot_list.map((item, index) => {
-										let name = (index + 1).toString();
-										return (
-											<Tabs.Pane label={item.title} name={name} key={index}>
-												<Layout.Row key={index} className="items" gutter="15">
-													{
-														item.data.map((obj, idx) => {
-															return (
-																<Layout.Col span="12" key={idx}>
-																	<Layout.Row className="item" gutter="15">
-																		<Layout.Col span="6" className="novel-pic">
-																			<Link to="/search">
-																				<img src={obj.icon} alt={obj.title}/>
-																			</Link>
-																		</Layout.Col>
-																		<Layout.Col span="18" className="novel-detail">
-																			<div
-																				className="novel-title">{obj.title}</div>
-																			<div className="novel-info">
-																				<span>{obj.author}</span><span>{obj.cate}</span><span>{obj.status}</span>
-																			</div>
-																			<div className="novel-desc">{obj.des}</div>
-																		</Layout.Col>
-																	</Layout.Row>
-																</Layout.Col>
-															);
-														})
-													}
-												</Layout.Row>
-											</Tabs.Pane>
-										);
-									})
-								}
-							</Tabs>
-						</div>
-						<div className="cat_list list">
-							<div className="title">分类排行<Link to="/cat_list">更多</Link></div>
-							{
-								this.state.cate_top.map((items, key) => {
-									return (
-										<Tabs activeName="1" className="cat_list_tab" key={key}>
-											{
-												Object.keys(items).map((i, j) => {
-													let name = (j + 1).toString();
-													return (
-														<Tabs.Pane label={i} name={name} key={j}>
-															<Layout.Row gutter="15">
-																{
-																	this.state.cate_top[key][i].map((m, n) => {
-																		return (
-																			<Layout.Col span="3" key={n}>
-																				<div className="cat_list_item">
-																					<div className="cat_list_pic">
-																						<Link to="/"><img src={m.cover}
-																						                  alt={m.title}/></Link>
-																					</div>
-																					<div className="cat_list_title">
-																						{m.title}
-																					</div>
-																				</div>
-																			</Layout.Col>
-																		);
-																	})
-																}
-															</Layout.Row>
-														</Tabs.Pane>
-													);
-												})
-											}
-										</Tabs>
-									
-									);
-								})
-							}
-						</div>
-						<div className="cat_list list">
-							<div className="title">本期推荐<Link to="/cat_list">更多</Link></div>
-							<Tabs activeName="1" onTabClick={(tab) => console.log(tab.props.name)}
-							      className="hot_list_tab">
-								{
-									this.state.curr_sug.map((item, index) => {
-										let name = (index + 1).toString();
-										return (
-											<Tabs.Pane label={item.title} name={name} key={index}>
-												<Layout.Row key={index} className="items" gutter="15">
-													{
-														item.data.map((obj, idx) => {
-															return (
-																<Layout.Col span="12" key={idx}>
-																	<Layout.Row className="item" gutter="15">
-																		<Layout.Col span="6" className="novel-pic">
-																			<Link to="/search">
-																				<img src={obj.cover} alt={obj.title}/>
-																			</Link>
-																		</Layout.Col>
-																		<Layout.Col span="18" className="novel-detail">
-																			<div
-																				className="novel-title">{obj.title}</div>
-																			<div className="novel-info">
-																				<span>{obj.author}</span><span>{obj.cate}</span><span>{obj.status}</span>
-																			</div>
-																			<div className="novel-desc">{obj.des}</div>
-																		</Layout.Col>
-																	</Layout.Row>
-																</Layout.Col>
-															);
-														})
-													}
-												</Layout.Row>
-											</Tabs.Pane>
-										);
-									})
-								}
-							</Tabs>
-						</div>
-						<div className="new_sug_list list">
-							<div className="title">新书推荐</div>
-							<Tabs activeName="1" className="new_sug_tab cat_list_tab">
-								{
-									Object.keys(this.state.new_sug).map((item, key) => {
-										return (
-											<Tabs.Pane label={item} name={key.toString()} key={key}
-											           className="cat_list_content">
-												<Layout.Row key={key} gutter="15">
-													{
-														this.state.new_sug[item].map((obj, idx) => {
-															return (
-																<Layout.Col
-																	span="4" key={idx}>
-																	<div className="cat_list_item">
-																		<div className="cat_list_pic">
-																			<Link to="/"><img src={obj.cover}
-																			                  alt=""/></Link>
-																		</div>
-																		<div className="cat_list_title">
-																			{obj.title}
-																		</div>
-																	</div>
-																</Layout.Col>
-															);
-														})
-													}
-												</Layout.Row>
-											</Tabs.Pane>
-										);
-									})
-								}
-							</Tabs>
-						</div>
-					</Layout.Col>
-				</Layout.Row>
-			</div>
-		);
-	}
+    state = {
+        data: {
+            banner: [],
+            cate_top: [],
+            curr_sug: [],
+            free: [],
+            hot_list: [],
+            new_sug: {}
+        },
+        hot_tabs: [
+            {title: "男生", sub: "1"},
+            {title: "女生", sub: "2"}
+        ],
+        loading: false,
+        imgHeight: 143,
+    };
+    
+    componentWillMount(){
+        console.log(123)
+        document.title = "首页";
+        this.setState({loading: true});
+        axios({
+            url: "/",
+            method: "GET"
+        }).then(res => {
+            this.setState({data: {...this.state.data, ...res.data.data}});
+            this.setState({loading: false});
+        });
+    }
+    
+    
+    render(){
+        return <React.Fragment>
+            {/*banner*/}
+            <Banner data={this.state.data.banner}/>
+            {/*nav*/}
+            <Nav/>
+            
+            <Card full className="free">
+                <Card.Header title="全网免费"/>
+                <Card.Body>
+                    {
+                        this.state.data.free.map((v, k) => (
+                                <Link key={k} to={{pathname: "/source", search: `?text=${v.title}`}}>
+                                    <img src={v.cover || v.icon} alt={v.title}/>
+                                    <span>{v.title}</span>
+                                </Link>
+                            )
+                        )
+                    }
+                </Card.Body>
+            </Card>
+            
+            <WhiteSpace size="lg"/>
+            
+            <Tab title="热门搜索" tabs={this.state.hot_tabs} data={this.state.data.hot_list}/>
+            
+            <Tab title="本期推荐" tabs={this.state.hot_tabs} data={this.state.data.curr_sug}/>
+            
+            <Card full className="recommend">
+                <Card.Header title="新书推荐"/>
+                <Card.Body>
+                    <Tabs tabs={[
+                        {title: "玄幻", sub: "1"},
+                        {title: "都市", sub: "2"},
+                        {title: "悬疑", sub: "3"},
+                        {title: "豪门", sub: "4"},
+                        {title: "穿越", sub: "5"}
+                    ]}
+                          initialPage={0}
+                    >
+                        
+                        {
+                            Object.values(this.state.data.new_sug).map((item, key) => (
+                                <Flex key={key} className="recommend--item">
+                                    {
+                                        item.map((v, k) => (
+                                            <Flex.Item className="item" key={k}>
+                                                <Link
+                                                    to={{pathname: "/source", search: `?text=${v.title}`}}>
+                                                    <img src={v.cover} alt={v.title}/>
+                                                    <span>{v.title}</span>
+                                                </Link>
+                                            </Flex.Item>
+                                        ))
+                                    }
+                                </Flex>
+                            ))
+                        }
+                    </Tabs>
+                </Card.Body>
+            </Card>
+        </React.Fragment>;
+    }
+}
+
+class Banner extends Home {
+    render(){
+        return <React.Fragment>
+            <Carousel
+                autoplay={true}
+                infinite
+            >
+                {this.props.data.map((v, k) => (
+                    <Link
+                        key={k}
+                        to={{pathname: "/source", search: `?text=${v.title}`}}
+                        style={{display: "inline-block", width: "100%", height: this.state.imgHeight}}
+                    >
+                        <img
+                            src={v.icon}
+                            alt={v.title}
+                            style={{width: "100%", verticalAlign: "top"}}
+                            onLoad={() => {
+                                // fire window resize event to change height
+                                window.dispatchEvent(new Event("resize"));
+                                this.setState({imgHeight: "auto"});
+                            }}
+                        />
+                    </Link>
+                ))}
+            </Carousel>
+        </React.Fragment>;
+    }
+}
+
+const Nav = () => (
+    <React.Fragment>
+        <Card full>
+            <Card.Body>
+                <Flex className="navbar">
+                    <Flex.Item>
+                        <Link to={{pathname: "/cat"}}><Icon name="cat"/>分类</Link>
+                    </Flex.Item>
+                    <Flex.Item>
+                        <Link to={{pathname: "/sort", search: "?cate=排行&page=novel_choiceness"}}><Icon
+                            name="sort"/>排行</Link>
+                    </Flex.Item>
+                    <Flex.Item>
+                        <Link to={{pathname: "/list", search: "?cate=连载&page=novel_choiceness"}}><Icon
+                            name="serial"/>连载</Link>
+                    </Flex.Item>
+                    <Flex.Item>
+                        <Link to={{pathname: "/list", search: "?cate=完结&page=novel_choiceness"}}><Icon
+                            name="complete"/>全本</Link>
+                    </Flex.Item>
+                    <Flex.Item>
+                        <Link to={{pathname: "/list", search: "?cate=free&page=novel_choiceness"}}><Icon
+                            name="free"/>免费</Link>
+                    </Flex.Item>
+                </Flex>
+            </Card.Body>
+        </Card>
+        <WhiteSpace size="lg"/>
+    </React.Fragment>
+);
+
+
+class Tab extends Home {
+    render(){
+        return <React.Fragment>
+            <Card full className="hot">
+                <Card.Header title={this.props.title}/>
+                <Card.Body>
+                    <Tabs tabs={this.props.tabs}
+                          initialPage={0}
+                    >
+                        {
+                            this.props.data.map((item, key) => (
+                                <div key={key} className="hot_list--item">
+                                    {
+                                        item.data.map((v, k) => (
+                                            <Link key={k}
+                                                  to={{pathname: "/source", search: `?text=${v.title}`}}>
+                                                <BookItem data={v}/>
+                                            </Link>
+                                        ))
+                                    }
+                                </div>
+                            ))
+                        }
+                    </Tabs>
+                </Card.Body>
+            </Card>
+            <WhiteSpace size="lg"/>
+        </React.Fragment>;
+    }
 }
 
 export default Home;
