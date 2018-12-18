@@ -20,11 +20,13 @@ class Source extends Component {
     
     componentWillMount(){
         const params = require("query-string").parseUrl(this.props.location.search);
+        const text = params.query.text.match(/[\u4e00-\u9fa5]/g).join("");
+        document.title = `${text}搜索结果`;
         axios({
             method: "GET",
             url: "/search",
             params: {
-                text: params.query.text.match(/[\u4e00-\u9fa5]/g).join("")
+                text: text
             }
         }).then(res => {
             if(res.data.result === 1) {

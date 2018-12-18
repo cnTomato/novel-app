@@ -56,6 +56,7 @@ class List extends Component {
     
     componentWillMount(){
         const params = require("query-string").parseUrl(this.props.location.search);
+        document.title = `${params.query.cate}热搜榜`;
         this.setState({
             cate: params.query.cate,
             page: params.query.page

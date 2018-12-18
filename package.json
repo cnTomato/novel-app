@@ -2,6 +2,7 @@
     "name": "novel-react",
     "version": "0.1.0",
     "private": true,
+    "homepage": "https://book.steps.info",
     "dependencies": {
         "@emotion/core": "^10.0.5",
         "antd-mobile": "^2.2.6",

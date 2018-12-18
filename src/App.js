@@ -24,6 +24,7 @@ class App extends Component {
     
     componentDidMount(){
         history.listen((location, action) => {
+            console.log(this.props)
             this.setTitle(location.pathname);
         });
     }

@@ -6,8 +6,7 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import axios from "axios";
 
-axios.defaults.baseURL = "http://localhost:3002";
-// axios.defaults.baseURL = "https://novel.steps.info";
+axios.defaults.baseURL = "https://novel.steps.info";
 ReactDOM.render(
     <App/>,
     document.getElementById("root")

@@ -5,13 +5,13 @@ import React, { Suspense, lazy } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Loading from "./components/Loading";
 
-const Home = lazy(() => import("./views/Home"));
-const Cat = lazy(() => import("./views/Cat"));
-const List = lazy(() => import("./views/List"));
-const Sort = lazy(() => import("./views/Sort"));
-const Source = lazy(() => import("./views/Source"));
-const Chapter = lazy(() => import("./views/Chapter"));
-const Categories = lazy(() => import("./views/Categories"));
+const Home = lazy(() => (import("./views/Home")));
+const Cat = lazy(() => (import("./views/Cat")));
+const List = lazy(() => (import("./views/List")));
+const Sort = lazy(() => (import("./views/Sort")));
+const Source = lazy(() => (import("./views/Source")));
+const Chapter = lazy(() => (import("./views/Chapter")));
+const Categories = lazy(() => (import("./views/Categories")));
 
 
 export const Routes = () => {

@@ -18,6 +18,7 @@ class Categories extends Component {
     }
     
     componentWillMount(){
+        document.title = "小说目录";
         const params = require("query-string").parseUrl(this.props.location.search);
         axios({
             url: "/categories",
