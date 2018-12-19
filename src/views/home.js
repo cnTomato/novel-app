@@ -8,6 +8,7 @@ import BookItem from "../components/BookItem";
 import axios from "axios";
 import Icon from "../components/Icon";
 import "../assets/scss/home.scss";
+import Loading from "../components/Loading";
 
 class Home extends Component {
     state = {
@@ -28,7 +29,6 @@ class Home extends Component {
     };
     
     componentWillMount(){
-        console.log(123)
         document.title = "首页";
         this.setState({loading: true});
         axios({
@@ -42,6 +42,9 @@ class Home extends Component {
     
     
     render(){
+        if(this.state.loading){
+            return <Loading/>
+        }
         return <React.Fragment>
             {/*banner*/}
             <Banner data={this.state.data.banner}/>

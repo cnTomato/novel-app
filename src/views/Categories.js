@@ -5,11 +5,13 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { List } from "antd-mobile";
+import Loading from "../components/Loading";
 
 class Categories extends Component {
     constructor(props){
         super(props);
         this.state = {
+            loading: false,
             error: false,
             data: {
                 chapters: []
@@ -18,6 +20,7 @@ class Categories extends Component {
     }
     
     componentWillMount(){
+        this.setState({loading: true});
         document.title = "小说目录";
         const params = require("query-string").parseUrl(this.props.location.search);
         axios({
@@ -40,10 +43,14 @@ class Categories extends Component {
                     clearInterval(t);
                 }, 5000);
             }
+            this.setState({loading: false});
         });
     }
     
     render(){
+        if(this.state.loading) {
+            return <Loading/>;
+        }
         return <List className={this.state.error ? "categories empty" : "categories"}>
             {
                 this.state.data.chapters.map((v, k) => {

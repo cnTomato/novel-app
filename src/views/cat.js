@@ -6,13 +6,17 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { Card, Tag, Icon } from "antd-mobile";
 import "../assets/scss/cat.scss";
+import Loading from "../components/Loading";
 
 class Cat extends Component {
     state = {
-        data: {}
+        data: {},
+        loading: false
     };
     
     componentDidMount(){
+        this.setState({loading: true});
+        document.title = "小说分类";
         axios({
             method: "GET",
             url: "/cat"
@@ -21,10 +25,14 @@ class Cat extends Component {
             if(res.data.result === 1) {
                 this.setState({data: {...this.state.data, ...res.data.data}});
             }
+            this.setState({loading: false});
         });
     }
     
     render(){
+        if(this.state.loading) {
+            return <Loading/>;
+        }
         return (
             <div className="cat">
                 {

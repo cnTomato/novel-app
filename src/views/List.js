@@ -12,7 +12,7 @@ class List extends Component {
         super(props);
         
         this.state = {
-            isFetching: true,
+            loading: true,
             data: [],
             pg: 1,
             page: "novel_sort",
@@ -24,7 +24,7 @@ class List extends Component {
     }
     
     fetchData(){
-        this.setState({isFetching: true});
+        this.setState({loading: true});
         axios({
             method: "GET",
             url: "/hot",
@@ -40,7 +40,7 @@ class List extends Component {
                 console.log(res.data.data);
                 this.setState({data: [...this.state.data, ...res.data.data.list]});
                 this.setState({hasMore: res.data.data.hasMore});
-                this.setState({isFetching: false});
+                this.setState({loading: false});
             }
         });
     }
@@ -107,7 +107,7 @@ class List extends Component {
                 >
                     <ActivityIndicator
                         text="加载中..."
-                        animating={this.state.isFetching}
+                        animating={this.state.loading}
                     />
                     <ActivityIndicator
                         text="我是有底线的"

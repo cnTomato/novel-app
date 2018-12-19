@@ -6,20 +6,25 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { Icon, Card } from "antd-mobile";
 import "../assets/scss/sort.scss";
+import Loading from "../components/Loading";
 
 class Sort extends Component {
     constructor(props){
         super(props);
         this.state = {
-            data: {}
+            data: {},
+            loading: false
         };
     }
     
-    componentDidMount(){
+    componentWillMount(){
+        document.title = "热搜榜";
+        this.setState({loading: true});
         axios({
             url: "/sort"
         }).then(res => {
             this.setState({data: {...this.data, ...res.data.data}});
+            this.setState({loading: false});
         });
     }
     
@@ -28,6 +33,9 @@ class Sort extends Component {
     }
     
     render(){
+        if(this.state.loading) {
+            return <Loading/>;
+        }
         return (
             <div className="sort">
                 {

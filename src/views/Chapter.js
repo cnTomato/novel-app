@@ -3,17 +3,20 @@
  */
 import React, { Component } from "react";
 import axios from "axios";
+import Loading from "../components/Loading";
 
 class Chapter extends Component {
     constructor(props){
         super(props);
         this.state = {
             data: "",
-            error: false
+            error: false,
+            loading: false
         };
     }
     
     componentDidMount(){
+        this.setState({loading: true});
         const params = require("query-string").parseUrl(this.props.location.search);
         axios({
             url: "/chapter",
@@ -35,10 +38,14 @@ class Chapter extends Component {
                     clearInterval(t);
                 }, 5000);
             }
+            this.setState({loading: false});
         });
     }
     
     render(){
+        if(this.state.loading) {
+            return <Loading/>;
+        }
         return <div style={{
             backgroundColor: "#fff",
             padding: "15px",
