@@ -1,0 +1,15 @@
+.chapter {
+    min-height: 100vh;
+    background-color: #fff;
+    padding: 15px;
+    font-size: 15px;
+}
+.prev_next {
+    display: flex;
+    padding: 30px;
+    justify-content: space-around;
+
+    span {
+        display: block;
+    }
+}
