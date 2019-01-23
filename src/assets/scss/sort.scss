@@ -26,7 +26,7 @@
                     border-radius: 5px;
                 }
 
-                &:nth-child(-n+3) {
+                &:nth-child(-n + 3) {
                     &::before {
                         background-color: red;
                         color: #fff;

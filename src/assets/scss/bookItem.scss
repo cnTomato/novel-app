@@ -1,33 +1,30 @@
 .book-item {
+    display: flex;
+
     margin-bottom: 15px;
     .avatar {
-        flex: 1;
-
+        margin-right: 15px;
+        width: 71px;
         img {
             display: block;
-            max-width: 100%;
-            height: auto;
+            width: 71px;
         }
     }
 
     .detail {
-        flex: 3;
-
         h3 {
             margin-top: 0;
         }
 
         p {
-            margin-top: 10px;
-            line-height: 20px;
-            opacity: .6;
-
+            margin-top: 5px;
+            line-height: 1.5;
+            opacity: 0.6;
             &.des {
-                height: 60px;
-                display: -webkit-box;
-                -webkit-box-orient: vertical;
-                -webkit-line-clamp: 3;
                 overflow: hidden;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
             }
         }
 
@@ -40,7 +37,7 @@
                     display: inline-block;
                     content: '|';
                     padding: 0 5px;
-                    opacity: .2;
+                    opacity: 0.2;
                 }
             }
         }

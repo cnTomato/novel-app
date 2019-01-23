@@ -7,7 +7,7 @@
             position: relative;
             margin-bottom: 15px;
             padding: 15px;
-            background-color: rgba(0, 0, 0, .1);
+            background-color: rgba(0, 0, 0, 0.1);
 
             &.hide {
                 display: none;
@@ -31,7 +31,7 @@
                 top: -16px;
                 left: 50%;
                 margin-left: -8px;
-                border-bottom: 16px solid rgba(0, 0, 0, .1);
+                border-bottom: 16px solid rgba(0, 0, 0, 0.1);
                 border-left: 16px solid transparent;
                 border-right: 16px solid transparent;
             }

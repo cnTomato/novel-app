@@ -14,7 +14,7 @@ hr {
     height: 15px;
     border: none;
 }
-#root{
+#root {
     position: relative;
     padding-top: 44px;
 }
@@ -24,7 +24,7 @@ hr {
     align-items: center;
     height: calc(100vh - 45px);
     font-size: 15px;
-    color: rgba(0, 0, 0, .5);
+    color: rgba(0, 0, 0, 0.5);
 }
 
 .am-navbar {
@@ -41,12 +41,12 @@ hr {
     box-sizing: border-box;
     left: 0;
     top: 0;
-    transition: all .2s linear;
+    transition: all 0.2s linear;
     transform: none;
     z-index: 998;
 
     &.show {
         transform: translateY(100%);
-        transition: all .2s linear;
+        transition: all 0.2s linear;
     }
 }

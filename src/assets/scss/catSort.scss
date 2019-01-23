@@ -15,7 +15,6 @@
             display: block;
             max-width: 100%;
             height: auto;
-
         }
     }
 
@@ -29,7 +28,7 @@
         p {
             margin-top: 10px;
             line-height: 20px;
-            opacity: .6;
+            opacity: 0.6;
 
             &.des {
                 height: 60px;
@@ -47,7 +46,7 @@
                 display: inline-block;
                 content: '|';
                 padding: 0 5px;
-                opacity: .2;
+                opacity: 0.2;
             }
         }
     }
