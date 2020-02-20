@@ -6,7 +6,7 @@
     "dependencies": {
         "@emotion/core": "^10.0.5",
         "antd-mobile": "^2.2.6",
-        "axios": "^0.18.0",
+        "axios": "^0.18.1",
         "history": "^4.7.2",
         "query-string": "^6.2.0",
         "react": "^16.6.3",
