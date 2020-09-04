@@ -33,7 +33,7 @@
     ],
     "devDependencies": {
         "babel-plugin-import": "^1.11.0",
-        "node-sass": "^4.10.0",
+        "node-sass": "^4.13.1",
         "postcss-pxtorem": "^4.0.1",
         "react-app-rewired": "^1.6.2"
     }
